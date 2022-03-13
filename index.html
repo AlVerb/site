@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,100&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <a class="link active" href="#">Конвертер</a>
+                    <a class="link" href="#">Курс валют</a>
+                    <select v-model="base_currency" @change="printRates">
+                        <option v-bind:value="">{{ base_currency }}</option>
+                        <option v-for="currency in currencies" v-bind:value="currency">{{ currency }}</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <!--<div class="converter">
+                <div class="converter__inner">
+                    <p class="title">Конвертер валют</p>
+                    <form class="form">
+                        <input 
+                            class="input"
+                            type="text" 
+                            placeholder="Введите текст..." 
+                            v-model="inp_text"
+                        />
+                        <p class="example">Например: 15 usd in rub</p>
+                        <button class="button" @click="convertCurrency">Перевести</button>
+                    </form>
+                    <p class="answer" v-if="amount != 0">{{ amount }} {{ currency_from }} = {{ rates.toFixed(2) }} {{ currency_to }}</p>
+                </div>
+            </div> converter -->
+
+            <div class="rates_currencies">
+                <div class="rates_currencies__inner">
+                    <p class="title">Курс валюты</p>
+                    <div class="items">
+                        <div class="item" v-for="(value, key) in rates_data">
+                            1 {{ key }} = {{ (1 / value).toFixed(2) }} {{ base_currency.toUpperCase() }}
+                        </div>
+                    </div>
+                </div>
+            </div><!-- rates_currencies -->
+        </div>
+        
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-router@4.0.5/dist/vue-router.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
